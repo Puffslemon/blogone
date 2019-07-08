@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Puffslemon的博客</title>
+    <meta name="baidu-site-verification" content="">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link th:href="@{/css/animation.css}" rel="stylesheet"/>
+    <link th:href="@{/css/view.css}" rel="stylesheet"/>
+
+    <!-- 返回顶部调用 begin -->
+    <link th:href="@{/css/lrtk.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/js.js}"></script>
+</head>
+
+<body>
+<header>
+    <nav id="nav">
+        <ul>
+            <li><a href="/">Puffslemon Blog</a></li>
+            <li><a href="javascript:window.open('')">网站下载</a></li>
+            <li th:href="blogType:${appliction.blogTypeList}">
+                <a th:href="'javascript:window.open(\'/blog/list.do?typeId='+${blogType.id}+'\',\'newwindow\')'"
+                   th:title="${blogType.typeName}" th:text="${blogType.typeName}"></a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div id="mainbody">
+    <div class="info">
+        <figure>
+            <img th:src="@{/images/art.jpg}" alt="Paname Hat"/>
+            <figcaption>
+                <strong>陪你走完了这段路，我也成为了你路过的路，从此人山人海，不再归来</strong>
+            </figcaption>
+        </figure>
+        <div class="card">
+            <h2>My workplace</h2>
+            <P th:text="'name：' + ${application.bloger.nickName}">name：</P>
+            <P th:text="'profession：' + ${application.bloger.job}">profession：</P>
+            <P th:text="'appetite：' + ${application.bloger.hobody}">appetite：</P>
+            <P th:text="'Email：' + ${application.bloger.email}">Email：</P>
+            <ul class="linkmore">
+                <li>
+                    <a th:href="@{/game/mario/mario.html}" class="talk" title="SupperMari" target="_blank"/>
+                </li>
+                <li>
+                    <a th:href="@{/game/fruit/index.html}" class="address" title="Fruit Ninja" target="_blank"/>
+                </li>
+                <li>
+                    <a th:href="@{/game/bnb/index.html}" class="email" title="Bubble hall" target="_blank"/>
+                </li>
+                <li>
+                    <a th:href="@{/game/2048/index.html}" class="photos" title="2048" target="_blank"/>
+                </li>
+                <li>
+                    <a th:href="@{/game/StreetFighter/index.html}" class="heart" title="Street fighter"
+                       target="_blank"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="blank"/>
+
+    <div class="blogs">
+        <!--bloglist begin-->
+        <ul class="bloglist">
+            <li th:each="blog:${session.blogList}">
+                <div class="arrow_box">
+                    <div class="ti"></div>
+                    <!--三角形-->
+                    <div class="ci"></div>
+                    <!--圆形-->
+                    <h2 class="title">
+                        <a th:href="'javascript:window.open(\'/blog/show.do?id='+${blog.id}+'\',\'newwindow\')'"
+                           th:text="${blog.title}"> </a>
+                    </h2>
+                    <ul class="textinfo">
+                        <a th:href="'javascript:window.open(\'/blog/show.do?id='+${blog.id}+'\',\'newwindow\')'"><img
+                                th:src="'/Blog/coverImages/'+${blog.coverImageName }"/></a>
+                        <p th:utext="${#strings.abbreviate(blog.content,170)}">
+                            ${fn:substring(blog.content,0,170)}...</p>
+                    </ul>
+                    <ul class="details">
+                        <li class="likes"><a th:text="'阅读('+${blog.readNum}+')'">阅读()</a></li>
+                        <li class="comments"><a><span class="ds-thread-count" data-thread-key=""
+                                                      th:attr="data-thread-key=${blog.id }"></span></a></li>
+                        <li class="icon-time"><a th:text="'发表时间('+${#dates.format(blog.publishTime,'yyyy-MM-dd')}+')'">发表时间()</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--arrow_box end-->
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+
+</html>

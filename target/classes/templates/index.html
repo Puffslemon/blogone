@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Puffslemon的博客</title>
+    <meta name="baidu-site-verification" content="">
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{/css/animation.css}" rel="stylesheet" />
+    <link th:href="@{/css/view.css}" rel="stylesheet" />
+
+    <!-- 返回顶部调用 begin -->
+    <link th:href="@{/css/lrtk.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/js.js}"></script>
+</head>
+
+<body>
+    <header>
+        <nav id="nav">
+            <ul>
+                <li><a href="/">Puffslemon Blog</a></li>
+                <li><a href="javascript:window.open('')">网站下载</a></li>
+                <li th:href="blogType:${appliction.blogTypeList}">
+                    <a th:href="'javascript:window.open(\'/blog/list.do?typeId='+${blogType.id}+'\',\'newwindow\')'" th:title="${blogType.typeName}" th:text="${blogType.typeName}"></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="mainbody">
+        <div class="info">
+            <figure>
+                <img th:src="@{/images/art.jpg}" alt="Paname Hat"/>
+                <figcaption><strong>陪你走完了这段路，我也成为了你路过的路，从此人山人海，不再归来</strong> </figcaption>
+            </figure>
+            <div class="card">
+                <h2>My workplace</h2>
+                <P th:text="'name：' + ${application.bloger.nickName}">name：</P>
+                <P th:text="'profession：' + ${application.bloger.job}">profession：</P>
+                <P th:text="'appetite：' + ${application.bloger.hobody}">appetite：</P>
+                <P th:text="'Email：' + ${application.bloger.email}">Email：</P>
+                <ul>
+
+                </ul>
+            </div>
+        </div>
+
+<
+</body>
+
+</html>
